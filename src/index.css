@@ -1,0 +1,293 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* =========================================
+   VARIABLES GLOBALES Y TEMA BLANCO (OKLCH)
+   ========================================= */
+html {
+    font-size: 62.5%; /* 1rem = 10px para facilitar medidas */
+}
+
+:root {
+    /* Primary (El azul vibrante original adaptado) */
+    --primary: oklch(57.6% 0.180 253.8deg);
+    --primary-hover: oklch(47.6% 0.180 253.8deg);
+    --primary-active: oklch(39.6% 0.180 253.8deg);
+    --primary-focus: oklch(72.6% 0.110 253.8deg);
+
+    --primary-solid: #1D4ED8;
+    --primary-solid-hover: #1E3A8A;
+    
+    /* Secondary */
+    --secondary: oklch(36.4% 0.013 267.2deg);
+    --secondary-hover: oklch(26.4% 0.013 267.2deg);
+    --secondary-active: oklch(18.4% 0.013 267.2deg);
+    --secondary-focus: oklch(51.4% 0.008 267.2deg);
+    
+    /* Variables de Tema Blanco */
+    --bg-color: #f8fafc; /* Fondo general super claro */
+    --text-main: #0f172a; /* Texto oscuro principal */
+    --text-muted: #64748b; /* Texto secundario grisáceo */
+    
+    /* Variables de Formulario y Utilidades */
+    --disabled: oklch(62.0% 0.000 0.0deg);
+    --border: #e2e8f0;
+    --input-bg: #ffffff;
+    --input-border: #cbd5e1;
+    --switch-background: #cbd5e1;
+    
+    /* Variables Neumorphism (Tema Claro) */
+    --neumorph-bg: #f0f0f0;
+    --neumorph-shadow-light: rgba(255, 255, 255, 0.8);
+    --neumorph-shadow-dark: rgba(0, 0, 0, 0.1);
+}
+
+/* =========================================
+   BASE, RESETEO Y TIPOGRAFÍA
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 1.6rem; /* 16px gracias al hack de html */
+    color: var(--text-main);
+    background-color: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Tipografía Escala */
+p, span, li, td, th, label, small, blockquote, cite { font-weight: 400; }
+h1, h2, h3, h4, h5, h6 { font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; color: var(--text-main); }
+h1 { font-size: 4.8rem; }
+h2 { font-size: 3.6rem; }
+h3 { font-size: 2.8rem; }
+h4 { font-size: 2.4rem; }
+h5 { font-size: 2.0rem; }
+h6 { font-size: 1.6rem; }
+
+small, .helper-text { color: var(--text-muted); font-size: 1.4rem; }
+
+/* =========================================
+   FONDOS Y ANIMACIONES BASE
+   ========================================= */
+.bg-animado {
+    position: fixed; top: 0; left: 0; width: 110%; height: 100%;
+    /* Gradiente sutil y elegante para tema claro */
+    background: radial-gradient(circle at top left, #ffffff 0%, #f1f5f9 100%);
+    z-index: -1; 
+    animation: fadeInLeftFondo 3s ease-out forwards;
+}
+
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeInLeftFondo { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
+
+.animar-entrada { opacity: 0; animation: fadeInUp 0.8s ease-out forwards; }
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+
+/* =========================================
+   SISTEMA DE BOTONES (100% Sólidos y Planos)
+   ========================================= */
+button, .button, input[type="submit"], input[type="reset"] {
+    background-color: var(--primary); border: none; color: white;
+    padding: 12px 24px; border-radius: 8px; cursor: pointer;
+    font-weight: 600; font-size: 1.5rem; transition: all 0.2s ease;
+    font-family: inherit; display: inline-block; text-align: center;
+    box-shadow: none; /* Aseguramos que no haya sombras globales */
+}
+
+button:hover, .button:hover, input[type="submit"]:hover { background-color: var(--primary-hover); transform: translateY(-1px); }
+button:active, .button:active { background-color: var(--primary-active); transform: translateY(0); }
+button:focus-visible, .button:focus-visible { outline: 3px solid var(--primary-focus); outline-offset: 2px; }
+button:disabled, .button:disabled { background-color: var(--disabled); cursor: not-allowed; opacity: 0.6; transform: none; }
+
+button.outline { background-color: transparent; border: 2px solid var(--primary); color: var(--primary); }
+button.outline:hover { background-color: var(--primary); color: white; }
+
+button.secondary { background-color: var(--secondary); }
+button.secondary:hover { background-color: var(--secondary-hover); }
+
+/* CORRECCIÓN: Botón principal completamente sólido (Mantuve el nombre de la clase para no romper tu HTML) */
+.btn-gradiente {
+    background: var(--primary); /* Azul sólido */
+    border-radius: 12px;
+    box-shadow: none; /* Quitamos el difuminado */
+}
+.btn-gradiente:hover { 
+    background: var(--primary-hover); 
+    box-shadow: none; /* Sin sombras al pasar el mouse */
+    transform: translateY(-1px);
+}
+
+.btn-solido {
+  background: var(--primary-solid) !important; /* El !important fuerza el color sólido */
+  color: #ffffff !important;
+  border: none !important;
+  padding: 16px;
+  font-size: 1.6rem;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: none !important;
+  transition: background 0.2s ease;
+  width: 100%;
+  font-family: inherit;
+  margin-top: 15px;
+}
+
+.btn-solido:hover {
+  background: var(--primary-solid-hover) !important;
+}
+
+/* =========================================
+   ELEMENTOS DE FORMULARIO
+   ========================================= */
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="submit"]):not([type="reset"]),
+select, textarea {
+    border: 2px solid var(--input-border); border-radius: 8px; padding: 10px 14px;
+    font-size: 1.5rem; font-family: inherit; background-color: var(--input-bg);
+    transition: all 0.2s ease; width: 100%; color: var(--text-main);
+}
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-focus); }
+
+/* Switch Toggle */
+input[type="checkbox"][role="switch"] {
+    width: 40px; height: 22px; border-radius: 11px;
+    background-color: var(--switch-background); cursor: pointer;
+    appearance: none; position: relative; transition: background-color 0.2s ease;
+}
+input[type="checkbox"][role="switch"]::before {
+    content: ""; position: absolute; top: 2px; left: 2px; width: 18px; height: 18px;
+    border-radius: 50%; background-color: #fff; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+}
+input[type="checkbox"][role="switch"]:checked { background-color: var(--primary); }
+input[type="checkbox"][role="switch"]:checked::before { transform: translateX(18px); }
+
+/* =========================================
+   CONTENEDORES MODULARES (Glass & Neumorphism)
+   ========================================= */
+
+/* 1. Neumorphism Card */
+.neumorphic-card {
+    position: relative; border-radius: 16px; background: var(--neumorph-bg);
+    box-shadow: -10px 10px 20px 5px var(--neumorph-shadow-light), 10px -10px 20px 5px var(--neumorph-shadow-dark);
+    padding: 24px; color: var(--text-main);
+    display: flex; flex-direction: column; gap: 20px;
+}
+
+/* Componentes internos Neumorphism */
+.neu-inset {
+    border-radius: 9999px; background: var(--neumorph-bg);
+    box-shadow: inset -5px 5px 10px var(--neumorph-shadow-light), inset 5px -5px 10px var(--neumorph-shadow-dark);
+    padding: 8px; display: flex; align-items: center;
+}
+.neu-btn {
+    border: none; border-radius: 9999px; background: transparent; color: var(--text-muted);
+    cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;
+}
+.neu-btn.active {
+    color: var(--primary); background: var(--neumorph-bg);
+    box-shadow: -5px 5px 10px var(--neumorph-shadow-light), 5px -5px 10px var(--neumorph-shadow-dark);
+}
+
+/* 2. Glass Card */
+.glass-card {
+    position: relative; border-radius: 16px; overflow: hidden;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(12px) saturate(150%); -webkit-backdrop-filter: blur(12px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0px 8px 24px 0 rgba(0, 0, 0, 0.05);
+    padding: 24px; color: var(--text-main);
+}
+.glass-card::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;
+    background: linear-gradient(to left top, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 50%); z-index: 1;
+}
+
+/* 3. Glass Header */
+.glass-header {
+    background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(24px); 
+    border: 1px solid rgba(255, 255, 255, 0.5); border-bottom: 1px solid rgba(200, 200, 200, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 50px; padding: 15px 40px;
+    display: flex; justify-content: space-between; align-items: center;
+}
+
+/* =========================================
+   ESTILO APPLE (Layout y Estructura)
+   ========================================= */
+
+/* 1. Navegación (Dark Bar) */
+.apple-nav {
+  background-color: rgba(22, 22, 23, 0.9);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  display: flex; justify-content: center; align-items: center;
+  position: fixed; top: 0; width: 100%; height: 48px; z-index: 100;
+}
+.apple-nav-belt {
+  display: flex; justify-content: space-between; align-items: center;
+  width: 80%; max-width: 1000px; color: #f5f5f7; font-size: 1.2rem; font-weight: 400;
+}
+.apple-nav-belt a { color: #f5f5f7; transition: opacity 0.3s; }
+.apple-nav-belt a:hover { opacity: 0.7; text-decoration: none; }
+
+/* 2. Sub-Navegación (Cinta de avisos) */
+.apple-subnav {
+  background-color: #f5f5f7; 
+  color: var(--text-main); width: 100%; padding: 12px 20px;
+  text-align: center; font-size: 1.4rem; font-weight: 400;
+  margin-top: 48px; 
+  border-bottom: 1px solid var(--border);
+}
+
+/* 3. Hero Section */
+.apple-hero {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 80px 20px 40px; min-height: 70vh;
+  background-size: cover; background-position: center; position: relative;
+}
+.apple-hero h1 { font-size: 5.6rem; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 5px; }
+.apple-hero h2 { font-size: 2.8rem; font-weight: 400; letter-spacing: 0.01em; margin-bottom: 15px; }
+.apple-links { display: flex; gap: 25px; justify-content: center; margin-top: 15px; }
+.apple-links a { font-size: 1.8rem; display: flex; align-items: center; gap: 5px; }
+.apple-links a::after { content: '>'; font-weight: bold; }
+
+/* 4. Grid de Productos */
+.apple-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px; padding: 20px; max-width: 1400px; margin: 0 auto;
+}
+.apple-box {
+  background-color: #fbfbfd; border-radius: 20px; padding: 40px 20px;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.02); transition: transform 0.3s ease;
+  min-height: 450px; justify-content: flex-start;
+}
+.apple-box:hover { transform: scale(1.01); }
+.apple-box h3 { font-size: 3.2rem; font-weight: 600; margin-bottom: 8px; }
+.apple-box p { font-size: 1.6rem; margin-bottom: 15px; }
+
+/* 5. Footer */
+.apple-footer {
+  background-color: #f5f5f7; padding: 30px 20px; margin-top: 40px;
+  color: var(--text-muted); font-size: 1.2rem;
+}
+.apple-footer-content { max-width: 1000px; margin: 0 auto; }
+.apple-footer-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px; padding: 20px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  margin: 20px 0;
+}
+.apple-footer-col h4 { color: var(--text-main); font-size: 1.2rem; font-weight: 600; margin-bottom: 10px; }
+.apple-footer-col ul { list-style: none; }
+.apple-footer-col li { margin-bottom: 8px; }
+.apple-footer-col a { color: var(--text-muted); text-decoration: none; }
+.apple-footer-col a:hover { text-decoration: underline; color: var(--text-main); }
+.apple-footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
