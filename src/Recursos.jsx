@@ -1,11 +1,11 @@
 import React from 'react';
 import logoWh from './assets/logowh.png'; 
 
-// Importación de logos (Tus PNGs originales)
 import rs1 from './assets/resources/rs1.png';
 import rs2 from './assets/resources/rs2.png';
 import rs3 from './assets/resources/rs3.png';
 import rs4 from './assets/resources/rs4.png';
+import rs5 from './assets/resources/rs5.png';
 
 // 1. Recibe 'usuario'
 function Recursos({ usuario, onLogout, onNavigate }) {
@@ -47,11 +47,21 @@ function Recursos({ usuario, onLogout, onNavigate }) {
       logo: rs3,
       link: '#excel-link',
       tags: [
-        { label: 'Hojas de cálculo', color: '#10b981' },
+        { label: 'Administración', color: '#10b981' },
       ]
     },
     {
       id: 4,
+      titulo: 'Manual (Docs)',
+      descripcion: 'Manual del equipo',
+      logo: rs5,
+      link: 'https://docs.google.com/document/d/1OFBOpWo5HOXyaz1gcoAz8J0Qmc0p2DAukPvQFDuJ7ik/edit?usp=sharing',
+      tags: [
+        { label: 'Administración', color: '#10b981' },
+      ]
+    },
+    {
+      id: 5,
       titulo: 'Design Drafts (Figma)',
       descripcion: 'Bocetos de diseño y prototipos en Figma.',
       logo: rs4,
