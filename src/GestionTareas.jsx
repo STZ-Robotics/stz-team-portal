@@ -104,7 +104,7 @@ function GestionTareas({ usuario, onLogout, onNavigate }) {
       <main className="animar-entrada" style={{ paddingTop: '100px', paddingBottom: '60px', paddingLeft: '5%', paddingRight: '5%', maxWidth: '800px', margin: '0 auto' }}>
         <header style={{ marginBottom: '40px', textAlign: 'left', borderBottom: '1px solid #cbd5e1', paddingBottom: '20px' }}>
           <h1 style={{ fontSize: '4.2rem', marginBottom: '15px', letterSpacing: '-1.5px', fontWeight: '300' }}>Control Maestro</h1>
-          <p style={{ color: '#64748b', fontSize: '1.8rem', fontWeight: '400', margin: 0 }}>Distribución operativa y bitácora directiva del STZ Team.</p>
+          <p style={{ color: '#64748b', fontSize: '1.8rem', fontWeight: '400', margin: 0 }}>Distribución operativa y bitácora directiva del equipo.</p>
         </header>
 
         <div style={{ display: 'flex', marginBottom: '30px' }}>

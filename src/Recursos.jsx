@@ -7,10 +7,8 @@ import rs3 from './assets/resources/rs3.png';
 import rs4 from './assets/resources/rs4.png';
 import rs5 from './assets/resources/rs5.png';
 
-// 1. Recibe 'usuario'
 function Recursos({ usuario, onLogout, onNavigate }) {
   
-  // 2. Validamos si es Admin (STZTM-001 o 002)
   const esAdmin = usuario?.matricula === 'STZTM-001' || usuario?.matricula === 'STZTM-002';
   
   // ==========================================

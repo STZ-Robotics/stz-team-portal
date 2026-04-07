@@ -129,7 +129,7 @@ function Reuniones({ usuario, onLogout, onNavigate }) {
         
         <header style={{ marginBottom: '40px', textAlign: 'left', borderBottom: '1px solid #cbd5e1', paddingBottom: '20px' }}>
           <h1 style={{ fontSize: '4.2rem', marginBottom: '15px', letterSpacing: '-1.5px', fontWeight: '300' }}>Reuniones Operativas</h1>
-          <p style={{ color: '#64748b', fontSize: '1.8rem', fontWeight: '400', margin: 0 }}>Historial, acuerdos y bitácora del STZ Team.</p>
+          <p style={{ color: '#64748b', fontSize: '1.8rem', fontWeight: '400', margin: 0 }}>Historial, acuerdos y bitácora del equipo.</p>
         </header>
 
         {cargando ? (
@@ -152,7 +152,6 @@ function Reuniones({ usuario, onLogout, onNavigate }) {
                         {proximaReunion.modalidad || 'Presencial'}
                       </span>
                       
-                      <button className="btn-solido" style={{ width: '100%', maxWidth: '250px', padding: '12px', fontSize: '1.4rem', borderRadius: '8px' }}>Hacer Check In</button>
                     </>
                   ) : (<p style={{ fontSize: '1.6rem', color: '#64748b', margin: '30px 0' }}>No hay reuniones programadas.</p>)}
                 </div>
